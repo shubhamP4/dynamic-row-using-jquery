@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Input box</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>  
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col">
+            <input type="text" class="form-control" placeholder="First name">
+            </div>
+            <div class="col">
+            <input type="text" class="form-control" placeholder="Last name">
+            </div>
+            <div class="col">
+            <button type="button" class="btn btn-primary add-btn">Add</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            var wrapper = $('.container');
+            var add_button = $('.add-btn');
+            var min_value = 1;
+            var max_value = 10;
+            $(add_button).click(function(e){
+                if(min_value < max_value){
+                    min_value++;
+                    $(wrapper).append('<div class="row mt-2"><div class="col"><input type="text" class="form-control" placeholder="First name"></div><div class="col"><input type="text" class="form-control" placeholder="Last name"></div><div class="col"><button type="button" class="btn btn-danger btn-sm remove-btn">Remove</button></div></div>');
+                }
+                else{
+                    alert("Only 10 rows are allowed")
+                }
+            });
+            $(wrapper).on('click','.remove-btn',function(){
+                $(this).parent("div").parent("div").remove();
+            });
+        });
+    </script>
+</body>
+</html>
